@@ -1,0 +1,49 @@
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contents %}
+<link rel="stylesheet" href="{% static 'css/bodycss.css' %}">
+<script src="{% static 'css/bg.js' %}"></script>
+<body id="imgbody" onload="test();">
+
+    
+
+
+<style>
+    input#id_title{
+        width:400px;
+    }
+    textarea#id_content{
+        width:400px;
+    }
+    div.wrapper{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+    div.wrapper *{
+        display: inline-block;
+        margin: 1%;
+        text-align: center;
+        
+    }
+</style>
+
+<div class="wrapper">
+    <h1>수정하기</h1>
+
+    <form action="" method = "POST">
+        {% csrf_token %}
+        
+        <table>
+            {{form.as_table}}
+        </table>
+        <br>
+        <input type="submit" value="수정하기">
+
+    </form>
+</div>
+</body>
+{% endblock %}

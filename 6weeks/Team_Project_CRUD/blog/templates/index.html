@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contents %}
+<link rel="stylesheet" href="{% static 'css/bodycss.css' %}">
+
+<script src="{% static 'css/bg.js' %}"></script>
+<body id="imgbody" onload="test();">
+
+    
+
+
+<style>
+
+    .wrapper {
+        text-align: center;
+    }
+    .wrapper * {
+        background: whitesmoke;
+    }
+    .card {
+        display: inline-block;
+        width: 400px;
+        border: 3px dashed #000000;
+        border-radius: 38px 38px 46px 0px;
+        -moz-border-radius: 38px 38px 46px 0px;
+        -webkit-border-radius: 38px 38px 46px 0px;
+        margin: 20px;
+        margin-top: 40px;
+        padding: 10px;
+        -webkit-box-shadow: 10px 10px 20px -2px rgba(0, 0, 0, 0.5);
+        -moz-box-shadow: 10px 10px 20px -2px rgba(0, 0, 0, 0.5);
+        box-shadow: 10px 10px 20px -2px rgba(0, 0, 0, 0.5);
+    }
+    div.inform {
+        
+        display: flex;
+        justify-content: center;
+        
+    }
+    div.inform * {
+        margin: 2px;
+        font-size: 11px;
+    }
+    .item .title {
+        margin-top: 0%
+    }
+    div.util{
+        
+        display:flex;
+        justify-content: flex-end;
+    }
+    
+    a.modify, a.delete{
+        margin-left: 10px;
+        
+    }
+</style>
+
+
+
+
+<article>
+    <!-- <a href="{% url 'newpost' %}">글쓰기</a> -->
+    <div class='wrapper'>
+        {% for post in posts_show.all %}
+        <div class='card'>
+            <div class='util'>
+            {% if user.is_authenticated %}
+                <a href="{% url 'newmodify' post.id %}" class="modify"><img src="https://cdn3.iconfinder.com/data/icons/device-apps-settings-white-with-multicolor-circl-1/2048/218_-_Edit-512.png" height="25"></a>
+                <a class="delete" onclick="showConfirm();"><a href="{% url 'delete' post.id %}"><img src="https://kr.seaicons.com/wp-content/uploads/2015/06/sign-delete-icon.png" height="28px"></a></a>
+            {% else %}
+            {% endif %}
+            </div>
+            <div class='item'>
+                <h1 class='title'><a href="{% url 'detail' post.id %}">{{post.title}}</a></h1>
+                <p class='content'>{{post.summary}}</p>
+            </div>
+            <div class='inform'>
+                <p class='date'>{{post.pub_date}}</p>
+                <!-- <a href = "{% url 'detail' post.id %}">...more</a> -->
+                
+                <!--<a href="{% url 'newmodify' post.id %}">수정하기</a>-->
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+</article>
+
+<!--
+<hr>
+<a href="{% url 'imageview' %}">static 이미지</a>
+-->
+</body>
+
+{% endblock %}

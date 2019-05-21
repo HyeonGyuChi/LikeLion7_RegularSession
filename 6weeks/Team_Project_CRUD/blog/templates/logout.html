@@ -1,0 +1,36 @@
+{% extends 'base.html' %} 
+{% load static %}
+
+{% block contents %}
+<link rel="stylesheet" href="{% static 'css/bodycss.css' %}">
+<script src="{% static 'css/bg.js' %}"></script>
+<body id="imgbody" onload="test();">
+
+    
+
+
+<style>
+
+    .container-fluid{
+        color : white;
+    }
+    a {
+        text-decoration: none;
+        color : white;
+    }
+    a:visited{
+        text-decoration: none;
+        color:white;
+    }  
+    </style>
+<div class="container-fluid">
+    <center><h1><span class="badge badge-secondary">LOG-OUT SAFELY</span></h1></center>
+<center><p>
+    안전히 로그아웃 되셨습니다 ^- ^<br />
+    <a href="{% url 'index' %}">홈으로 돌아가기! 고고링</a>
+</p></center>
+
+
+</div>
+</body>
+{% endblock %}

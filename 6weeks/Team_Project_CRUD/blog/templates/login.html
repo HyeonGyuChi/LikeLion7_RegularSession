@@ -1,0 +1,55 @@
+{% extends 'base.html' %} 
+{% load static %}
+
+{% block contents %}
+<link rel="stylesheet" href="{% static 'css/bodycss.css' %}">
+<script src="{% static 'css/bg.js' %}"></script>
+<body id="imgbody" onload="test();">
+
+
+
+
+<style>
+
+#regcss{
+ display: flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+  
+}
+
+</style>
+
+<form method="post" action="" >
+    {% csrf_token %}
+    
+    <table id="regcss">
+        <center><h1>로그인 FORM 입니다.</h1></center>
+      <tr>
+<td>
+    <label for="{{ form.username.id_for_label }}">ID: </label>
+  </td>
+  <td>
+    <input class="form-control" id="{{ form.username.id_for_label }}" maxlength="15" name="{{ form.username.html_name }}" type="text" placeholder="write your nickname.">
+  </td>
+ 
+</tr>
+  <tr>
+    <td>
+    <label for="exampleInputPassword1">PW: </label>
+  </td>
+  <td>
+    <input class="form-control" id="{{ form.password.id_for_label }}" maxlength="120" name="{{ form.password.html_name }}" type="password" placeholder="put in your Password.">
+  </td>
+  </tr>
+<tr>
+<td></td>
+<td align="right"><input type="submit" class="btn btn-primary" name="" value="로그인">
+    
+    <input type="reset" class="btn btn-primary" name="" value="초기화"></td>
+  </tr>
+</form>
+</table>
+</body>
+{% endblock %}

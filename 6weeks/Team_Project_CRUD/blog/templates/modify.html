@@ -1,0 +1,9 @@
+<form action ="{% url 'update' post.id %}">
+    <h4>제목:</h4>
+    <input type = "text" name ="title" value = "{{post.title}}">
+    <br><br>
+    <h4>내용 : </h4>
+    <textarea name = "content" cols = "30" rows = "10">{{post.content}}</textarea>
+    <br><br>
+    <input type = "submit" value = "제출하기">
+</form>

@@ -1,0 +1,14 @@
+<h1>MEDIA에서 불러온 파일</h1>
+
+{% load staticfiles %}
+
+{% for x in imgclass.all %}
+<div class="imgfd">
+    <h1>{{ x.title }}</h1>
+    <img src="{{ x.image.url }}" height=400 alt = '사진'>
+    <p>{{ x.description }}</p>
+</div>
+{% endfor %}
+<hr>
+<h1>STATIC 에서 불러온 파일</h1>
+<img src="{% static 'Patrick.png' %}" height=400 alt ="사진사진">

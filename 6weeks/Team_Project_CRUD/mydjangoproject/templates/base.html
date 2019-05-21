@@ -1,0 +1,83 @@
+
+<style>
+        /* nav바 고정하기 BOOTSTARP 사용하고 nav에 하위 효과주기
+         {
+          position: fixed;
+          top: 0px;
+          left: 0px;
+          width: 100%; position 하면 width가 줄어듬
+      } */
+      
+ 
+
+    nav{
+        margin-top : 0px;
+        margin-bottom : 30px;
+        margin-left: 0px;
+        margin-right: 0px;
+        background-color: #3d3d3d;
+        height: auto;
+        padding-top:20px;
+        padding-bottom: 5px;
+        padding-left: 10px;
+        position: sticky;
+        top: 0px;
+        z-index: 3;
+        -webkit-box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.9);
+        -moz-box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.9);
+        box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.9);
+    }
+    div.nav-content{
+        height: 40px;
+        margin: 0%;
+    }
+    nav *.nav-component{
+        display: inline-block;
+        text-align: center;
+        margin: 4px;
+        height: auto;
+        line-height: auto;
+        font-size: auto;
+        font-weight: bold;
+    }
+    nav a {
+        text-decoration: none;
+        color: white;
+    }
+    a{
+        text-decoration: none;
+        color: black; 
+    }
+    nav a:visited{
+        text-decoration: none;
+        color:white;
+    }   
+    a:visited{
+        text-decoration: none;
+        color:black;
+    }   
+    #lgout{
+        margin-left : 10px;
+    }
+</style>
+
+
+<nav>
+    <div class='nav-content'>
+        
+        <div class='nav-component'><a href = "{% url 'index' %}">HOME</a></div>
+    {% if user.is_authenticated %}
+    <div class='nav-component'>안녕하세요 {{ user.username }}님!</div> 
+        <div class='nav-component'><a href = "{% url 'newpost' %}">글쓰기</a><a id="lgout" href="{% url 'logout' %}">로그아웃</a></div>
+    {% else %}
+    <div class='nav-component' style="color:white;"><a href="{% url 'signupgo' %}" style=" margin-right:10px;">회원가입</a><a href="{% url 'login' %}">로그인 하기</a></div>
+    {% endif %}
+    </div>
+</nav>
+
+
+
+
+{% block contents %}
+
+{% endblock %}

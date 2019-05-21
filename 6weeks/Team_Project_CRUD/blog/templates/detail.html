@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contents %}
+<link rel="stylesheet" href="{% static 'css/bodycss.css' %}">
+
+<head>
+    <script type="text/javascript">
+        function showConfirm(){
+            if(confirm("삭제 하시겠습니까?")){
+                var url = "{%url 'delete' post.id %}"
+                document.location.replace(url)
+                alert("삭제되었습니다")
+            } else{
+                return false;
+            }
+        }
+    </script>
+</head>
+<script src="{% static 'css/bg.js' %}"></script>
+<body id="imgbody" onload="test();">
+
+    
+
+
+<style>
+
+    @font-face { font-family: 'NIXGONM-Vb'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/NIXGONM-Vb.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'Chosunilbo_myungjo'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff') format('woff'); font-weight: normal; font-style: normal; }
+    a{
+        text-decoration: none;
+    }
+    article{
+        display: flex;
+        justify-content: center;
+    }
+    div.card{
+        
+        display: flex;
+        width:700px;
+        background:transparent;
+        flex-direction: column;
+        margin-bottom: 40px;
+    }
+    div.card>*{
+        opacity: 0.8;
+	background-color:gray;
+
+    
+	
+    color : white;
+        text-align: center;
+        margin: 3%;
+        margin-top: 30px;
+        border-radius: 30px;
+        font-family: 'NIXGONM-Vb';
+        
+      
+    }
+    
+    div.util{
+       
+        background: transparent;
+        display: flex;
+        justify-content: space-between;
+        
+        
+    }
+    div.util>*{
+        text-align: center;
+        border: 3px outset;
+        border-radius: 30px;
+        background: whitesmoke;
+        padding : 10px;
+    }
+    
+    #cardcontent{
+        padding : 10px;
+        min-height: 400px;
+        border: 1px solid;
+    }
+    #cardtitle{
+        border: 1px solid;
+        padding : 5px;
+    }
+</style>
+
+
+<article>
+    <div class='card' style="background : transparent">
+            <div class='util'>
+                        <div>
+                                <a href = "{% url 'index' %}">
+                            <img src="https://image.flaticon.com/icons/svg/1077/1077840.svg" id='list' height=20>
+                            </a>
+                        </div>
+                        {% if user.is_authenticated %}
+                        <div>
+                            <a href = "{% url 'newmodify' post.id %}">
+                            <img src="https://www.flaticon.com/premium-icon/icons/svg/1812/1812556.svg" id='modify' height=20>
+                            </a>
+                        </div>
+                        <div> 
+                            <a onclick="showConfirm();"><img src="https://www.flaticon.com/premium-icon/icons/svg/12/12610.svg" id='delete' height=20></a>
+                        </div>
+                        {% else %}
+                        {% endif %}
+            </div>
+          
+        
+        <h2 class='title' id="cardtitle">{{post.title}}</h2>
+        <p calss='content'id="cardcontent" >{{post.content}}</p>
+        <p class='inform'>작성날짜 : {{post.pub_date}}</p>
+       
+        <!--
+        <div class='index'>
+            <img src="https://cdn3.iconfinder.com/data/icons/ui-glynh-blue-01-of-5/100/UI_Glyph_Blue_1_of_3_14-512.png" id='list' height=30>
+            <a href = "{% url 'index' %}">목록</a>
+        </div>
+        -->
+        
+    </div>
+</article>
+    {% endblock %}
+    <input type="button" value="삭제" onclick="showConfirm();"/>
+    </body>

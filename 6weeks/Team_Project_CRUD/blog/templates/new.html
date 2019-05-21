@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contents %}
+<link rel="stylesheet" href="{% static 'css/bodycss.css' %}">
+<script src="{% static 'css/bg.js' %}"></script>
+<body id="imgbody" onload="test();">
+
+    
+
+
+<style>
+
+div.wrapper{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+div.wrapper *{
+    display: inline-block;
+    margin: 1%;
+    text-align: center;
+    
+}
+
+
+input#id_title{
+        width:400px;
+    }
+    textarea#id_content{
+        width:400px;
+    }
+</style>
+
+
+
+<div class='wrapper'>
+    
+    <h1>새 글쓰기</h1>
+
+
+    <div class='card'>
+        <form method = 'POST'>
+            {% csrf_token %}
+            <table style="text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;" >
+                {{form.as_table}}
+                
+            </table>
+            <br>
+            <input type="submit" value="제출하기">
+        </form>
+    </div>
+</div>    
+
+</body>
+
+{% endblock %}
