@@ -9,5 +9,5 @@
 ### 스크린샷
 > 사진경로 : ./image
 
-#### HTML Rendering > [자기소개 페이지](http://htmlpreview.github.io/?https://github.com/HyeonGyuChi/LikeLion7_RegularSession/blob/master/2weeks/HyeonGyu_Introduction.html)
+#### Git Hosting Server > [자기소개 페이지](https://hyeongyuchi.github.io/)
 ![Capture](./image/ScreenShot.png)
