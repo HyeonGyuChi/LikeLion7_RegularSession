@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+        <h1 align="center">여기서 텍스트를 분석하세요!</h1>
+        <a href="{% url 'about' %}">ABOUT</a> <!--url이름이 (urls.py path에서 설정) about인 곳으로 가라-->
+        <hr>
+
+        <form action="{% url 'count' %}" method="POST" align="center">
+            {% csrf_token %}
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Text</span>
+                </div>
+                <textarea class="form-control" name="fulltext" aria-label="With textarea" required></textarea>
+            </div>
+            
+            <br>
+            
+            <input type="submit" class="btn btn-primary btn-lg" value="Count!">
+            
+        </form>
+    </div>
+</div>
+
+
+
+{% endblock %}

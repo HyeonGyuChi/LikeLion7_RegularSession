@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h3>
+                    입력한 텍스트
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                    <p>{{text}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <ul class="list-group list-group-flush" align="center">
+                <li class="list-group-item"><h3>입력한 텍스트의 총 길이</h3></li>
+                <li class="list-group-item"><h4>{{text|length}}</h4></li>
+                <li class="list-group-item"><h3>단어의 수</h3></li>
+                <li class="list-group-item"><h4>{{word}}</h4> <!--views에서 처리해줬지만 word|length 를 사용하여 처리해줘도 댐 --></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6" align="center">
+            {% for word, count in dic %}
+            <div class="card" style="width:auto; display:inline-block; margin:10px">
+                <div class="card-body">
+                <h5 class="card-title">{{word}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted" align="center">{{count}}</h6>
+                </div>
+            </div>
+            {% endfor%}
+        </div>
+
+        <div class="col-md-6" align="center">
+                <div class="card border-primary mb-3" style="max-width: auto; display:inline-flex; margin:10px">
+                    <div class="card-header">가장 많이 나온단어</div>
+                    <div class="card-body text-primary">
+                        <h5 class="card-title">{{max_ratio}}%</h5>
+                        <p class="card-text">{{max_word}}</p>
+                    </div>
+                </div>
+                {% if second_ratio %}
+                <div class="card border-success mb-3" style="max-width: auto; display:inline-flex; margin:10px">
+                    <div class="card-header">두번째로 많이 나온단어</div>
+                    <div class="card-body text-success">
+                        <h5 class="card-title">{{second_ratio}}%</h5>
+                        <p class="card-text">{{second_word}}</p>
+                    </div>
+                </div>
+                {% endif %}
+                {% if third_ratio %}
+                <div class="card border-info mb-3" style="max-width: auto; display:inline-flex; margin:10px">
+                    <div class="card-header">세번째로 많이 나온단어</div>
+                    <div class="card-body text-info">
+                        <h5 class="card-title">{{third_ratio}}%</h5>
+                        <p class="card-text">{{third_word}}</p>
+                    </div>
+                </div>
+                {% endif %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <h3 align="center">최빈단어비율</h3>
+            <div class="progress" style="height:50px;">
+                <div class="progress-bar" role="progressbar" style="width: {{max_ratio}}%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">{{max_ratio}}%</div>
+                <div class="progress-bar bg-success" role="progressbar" style="width: {{second_ratio}}%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">{% if second_ratio %} {{second_ratio}}% {% endif %}</div>
+                <div class="progress-bar bg-info" role="progressbar" style="width: {{third_ratio}}%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">{% if third_ratio %} {{third_ratio}}% {% endif %}</div>
+            </div>
+            </br>
+            <div class="progress" style="height:50px;">
+                <div class="progress-bar" role="progressbar" style="width: {{max_ratio}}%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">{{max_word}}</div>
+                <div class="progress-bar bg-success" role="progressbar" style="width: {{second_ratio}}%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">{% if second_ratio %} {{second_word}} {% endif %}</div>
+                <div class="progress-bar bg-info" role="progressbar" style="width: {{third_ratio}}%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">{% if third_ratio %} {{third_word}} {% endif %}</div>
+                </div>
+            </br>
+        </div>
+    </div>
+
+
+{% endblock %}
